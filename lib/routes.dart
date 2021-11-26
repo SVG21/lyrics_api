@@ -20,7 +20,7 @@ final router = AppRouter<Routes>(
         AppRoute(
           name: Routes.lyricsUI,
           path: 'lyrics',
-          builder: (context, state) => HomePage(),
+          builder: (context, state) => LyricsUI(),
         ),
 
       ],

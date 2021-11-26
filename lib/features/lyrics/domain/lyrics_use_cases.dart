@@ -13,17 +13,14 @@ class LyricsUseCase extends UseCase<LyricsEntity> {
             },
           },
           inputFilters: {
-            ArtistInput:( LyricsEntity i){
-              return ArtistInput(artist: i.artist);
-            },
-            TitleInput:( LyricsEntity i){
-              return TitleInput(title: i.title);
-            }
+            ArtistInput: (ArtistInput i, LyricsEntity e) =>
+                LyricsEntity(artist: i.artist),
+            TitleInput: (TitleInput i, LyricsEntity e) =>
+                LyricsEntity(title: i.title)
           },
         );
 
   void onCreate() {
-
     request(LyricsGatewayOutput(entity.artist, entity.title),
         onSuccess: (LyricsSuccessInput i) {
           return LyricsEntity(lyrics: i.lyrics);
@@ -60,8 +57,9 @@ class LyricsUIOutput extends Output {
 }
 
 class LyricsGatewayOutput extends Output {
- final String artist;
- final String title;
+  final String artist;
+  final String title;
+
   LyricsGatewayOutput(this.artist, this.title);
 
   @override
@@ -71,8 +69,7 @@ class LyricsGatewayOutput extends Output {
 class LyricsSuccessInput extends SuccessInput {
   final String lyrics;
 
-
-  LyricsSuccessInput( {
+  LyricsSuccessInput({
     required this.lyrics,
   });
 

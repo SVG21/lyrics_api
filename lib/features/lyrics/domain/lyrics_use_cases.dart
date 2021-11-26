@@ -13,11 +13,18 @@ class LyricsUseCase extends UseCase<LyricsEntity> {
             },
           },
           inputFilters: {
+            ArtistInput:( LyricsEntity i){
+              return ArtistInput(artist: i.artist);
+            },
+            TitleInput:( LyricsEntity i){
+              return TitleInput(title: i.title);
+            }
           },
         );
 
   void onCreate() {
-    request(LyricsGatewayOutput(),
+
+    request(LyricsGatewayOutput(entity.artist, entity.title),
         onSuccess: (LyricsSuccessInput i) {
           return LyricsEntity(lyrics: i.lyrics);
         },
@@ -28,7 +35,7 @@ class LyricsUseCase extends UseCase<LyricsEntity> {
     entity = entity.merge(isLoading: true);
 
     return request<LyricsGatewayOutput, LyricsSuccessInput>(
-      LyricsGatewayOutput(),
+      LyricsGatewayOutput(entity.artist, entity.title),
       onSuccess: (successInput) => entity.merge(
         isLoading: false,
         lyrics: successInput.lyrics,
@@ -53,14 +60,19 @@ class LyricsUIOutput extends Output {
 }
 
 class LyricsGatewayOutput extends Output {
+ final String artist;
+ final String title;
+  LyricsGatewayOutput(this.artist, this.title);
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [artist, title];
 }
 
 class LyricsSuccessInput extends SuccessInput {
   final String lyrics;
 
-  LyricsSuccessInput({
+
+  LyricsSuccessInput( {
     required this.lyrics,
   });
 

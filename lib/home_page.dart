@@ -30,9 +30,13 @@ class HomePage extends UI<LyricsViewModel> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    onPressed: () =>
+                    onPressed: () {
+                      lyricsViewModel.artist("bruno mars");
+                      lyricsViewModel.title("lazy song");
+                      lyricsViewModel.fetch;
+                    }
 
-                      lyricsViewModel.fetch
+
 
                      ,
                     child: const Text("Search"),

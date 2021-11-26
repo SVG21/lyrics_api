@@ -1,6 +1,7 @@
 import 'package:clean_framework/clean_framework_providers.dart';
 
 import 'package:flutter/material.dart';
+import 'package:lyrics_example/features/lyrics/domain/lyrics_entity.dart';
 import 'package:lyrics_example/features/lyrics/domain/lyrics_use_cases.dart';
 import 'package:lyrics_example/features/lyrics/domain/lyrics_view_model.dart';
 import 'package:lyrics_example/providers.dart';
@@ -24,18 +25,19 @@ class LyricsPresenter
       LyricsViewModel(
           isLoading: output.isLoading,
           lyrics: output.lyrics,
-          artist: (artist) => _artist(useCase, artist),
+          artist: (artist) =>  _artist(useCase, artist),
           title: (title) => _title(useCase, title),
           fetch: useCase.fetch,
 
       );
 
 
-  void _artist(LyricsUseCase useCase, String artist) {
-    useCase.setInput(ArtistInput(artist: artist));
+   _artist(LyricsUseCase useCase, String artist) {
+
+    useCase.setInput<ArtistInput>(ArtistInput(artist: artist));
   }
 
-  void _title(LyricsUseCase useCase, String title) {
-    useCase.setInput(TitleInput(title: title));
+   _title(LyricsUseCase useCase, String title) {
+    useCase.setInput<TitleInput>(TitleInput(title: title));
   }
 }

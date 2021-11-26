@@ -16,9 +16,10 @@ class LyricsGateway extends RestGateway<LyricsGatewayOutput,
     provider: lyricsUseCaseProvider,
   );
 
+
   @override
   LyricsRequest buildRequest(LyricsGatewayOutput output) {
-    return LyricsRequest();
+    return LyricsRequest(output.artist, output.title);
   }
 
   @override
@@ -34,9 +35,13 @@ class LyricsGateway extends RestGateway<LyricsGatewayOutput,
 
 class LyricsRequest extends GetRestRequest {
 
+  final String artist;
+  final String title;
+
+  LyricsRequest(this.artist, this.title);
 
   @override
-  String get path => '/tool/rosetta stoned';
+  String get path => '/$artist/$title';
 
 
 }

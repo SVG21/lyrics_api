@@ -13,10 +13,10 @@ class LyricsUseCase extends UseCase<LyricsEntity> {
             },
           },
           inputFilters: {
-            ArtistInput: (ArtistInput i, LyricsEntity e) =>
-                LyricsEntity(artist: i.artist),
-            TitleInput: (TitleInput i, LyricsEntity e) =>
-                LyricsEntity(title: i.title)
+            ArtistInput: ( i,  e) =>
+                e.merge(artist: i.artist),
+            TitleInput: ( i,  e) =>
+                e.merge(title: i.title)
           },
         );
 

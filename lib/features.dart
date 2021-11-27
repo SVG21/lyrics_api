@@ -1,6 +1,6 @@
 import 'package:clean_framework/clean_framework.dart';
 
-const lastLoginFeature = Feature(name: 'lyrics');
+const lyricsFeature = Feature(name: 'lyrics');
 
 enum FeatureState { hidden, active, forbidden }
 

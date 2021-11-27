@@ -15,11 +15,34 @@ class LyricsUI extends UI<LyricsViewModel> {
       appBar: AppBar(
         title: const Text('Lyrics'),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: viewModel.lyrics.isEmpty?const CircularProgressIndicator():Text(viewModel.lyrics,style: const TextStyle(color: Colors.black),),
-        ),
-      ),
+      body: _lazyLyricsWidget(
+        isLoading: viewModel.isLoading,
+        child: viewModel.lyrics.isEmpty?const Center(child: Text("Loading"),):Center(child: Text(viewModel.lyrics),)
+      )
     );
+  }
+}
+
+class _lazyLyricsWidget extends StatelessWidget{
+  const _lazyLyricsWidget({
+    Key? key,
+    required this.isLoading,
+    required this.child,
+  }) : super(key: key);
+
+  final bool isLoading;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      child: isLoading
+          ? const Center(
+        child: CircularProgressIndicator()
+      )
+          : child,
+    );
+
   }
 }

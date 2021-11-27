@@ -54,22 +54,18 @@ class HomePage extends UI<LyricsViewModel> {
 
               ),
             ),
-            SizedBox(
-              width: 100,
-              height: 20,
-              child: RaisedButton(
-                elevation: 0.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                onPressed: () {
-                  lyricsViewModel.artist(artistController.value.text.trim());
-                  lyricsViewModel.title(titleController.value.text.trim());
-                  // lyricsViewModel.fetch.call();
-                  router.to(Routes.lyricsUI);
-                },
-                child: const Text("Search"),
+            RaisedButton(
+              elevation: 0.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6),
               ),
+              onPressed: () {
+                lyricsViewModel.artist(artistController.value.text.trim());
+                lyricsViewModel.title(titleController.value.text.trim());
+                lyricsViewModel.fetch;
+                router.to(Routes.lyricsUI);
+              },
+              child: const Text("Search"),
             ),
           ],
         ),

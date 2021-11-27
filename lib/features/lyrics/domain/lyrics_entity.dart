@@ -17,11 +17,14 @@ class LyricsEntity extends Entity {
 
   LyricsEntity merge({
     bool? isLoading,
-    String? lyrics,
+    String? lyrics, String? artist,
+    String?title
   }) {
     return LyricsEntity(
       isLoading: isLoading ?? this.isLoading,
       lyrics: lyrics ?? this.lyrics,
+      artist: artist??this.artist,
+      title: title??this.title
     );
   }
 }

@@ -15,8 +15,10 @@ class LyricsUI extends UI<LyricsViewModel> {
       appBar: AppBar(
         title: const Text('Lyrics'),
       ),
-      body: Center(
-        child: Text(viewModel.lyrics,style: const TextStyle(color: Colors.black),),
+      body: SingleChildScrollView(
+        child: Center(
+          child: viewModel.lyrics.isEmpty?const CircularProgressIndicator():Text(viewModel.lyrics,style: const TextStyle(color: Colors.black),),
+        ),
       ),
     );
   }

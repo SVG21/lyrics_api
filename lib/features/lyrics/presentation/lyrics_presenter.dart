@@ -23,21 +23,18 @@ class LyricsPresenter
   LyricsViewModel createViewModel(
           LyricsUseCase useCase, LyricsUIOutput output) =>
       LyricsViewModel(
-          isLoading: output.isLoading,
-          lyrics: output.lyrics,
-          artist: (artist) =>  _artist(useCase, artist),
-          title: (title) => _title(useCase, title),
-          fetch: useCase.fetch,
-
+        isLoading: output.isLoading,
+        lyrics: output.lyrics,
+        artist: (artist) => _artist(useCase, artist),
+        title: (title) => _title(useCase, title),
+        fetch: useCase.fetch,
       );
 
-
-   _artist(LyricsUseCase useCase, String artist) {
-
+  _artist(LyricsUseCase useCase, String artist) {
     useCase.setInput<ArtistInput>(ArtistInput(artist: artist));
   }
 
-   _title(LyricsUseCase useCase, String title) {
+  _title(LyricsUseCase useCase, String title) {
     useCase.setInput<TitleInput>(TitleInput(title: title));
   }
 }

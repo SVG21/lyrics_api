@@ -12,92 +12,70 @@ class HomePage extends UI<LyricsViewModel> {
 
   @override
   Widget build(BuildContext context, LyricsViewModel lyricsViewModel) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Type Song'),
-        ),
-        body:
+    TextEditingController artistController = TextEditingController();
+    TextEditingController titleController = TextEditingController();
 
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  width: 100,
-                  height: 20,
-                  child: RaisedButton(
-                    elevation: 0.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    onPressed: () {
-                      lyricsViewModel.artist("bruno mars");
-                      lyricsViewModel.title("lazy song");
-                      lyricsViewModel.fetch.call();
-                      router.to(Routes.lyricsUI);
-                    },
-                    child: const Text("Search"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Type Song'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextFormField(
+              controller: artistController,
+              textAlign: TextAlign.start,
+              decoration: InputDecoration(
+                hintText: "Enter artist",
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: const BorderSide(
+                    color: Colors.black,
+                    width: 5,
                   ),
                 ),
 
-              ],
+              ),
             ),
-          ),
-        );
+            TextFormField(
+              controller: titleController,
+              textAlign: TextAlign.start,
+              decoration: InputDecoration(
+                hintText: "Enter title",
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: const BorderSide(
+                    color: Colors.black,
+                    width: 5,
+                  ),
+                ),
+
+              ),
+            ),
+            SizedBox(
+              width: 100,
+              height: 20,
+              child: RaisedButton(
+                elevation: 0.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                onPressed: () {
+                  lyricsViewModel.artist(artistController.value.text.trim());
+                  lyricsViewModel.title(titleController.value.text.trim());
+                  // lyricsViewModel.fetch.call();
+                  router.to(Routes.lyricsUI);
+                },
+                child: const Text("Search"),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
 
-// Column(
-// children: [
-// TextFormField(
-// controller: artistController,
-// textAlign: TextAlign.start,
-// decoration: InputDecoration(
-// hintText: "Enter artist",
-//
-// border: OutlineInputBorder(
-// borderRadius: BorderRadius.circular(5.0),
-// borderSide: const BorderSide(
-// color: Colors.black,
-// width: 5,
-// ),
-// ),
-// //fillColor: Colors.green
-// ),
-// ),
-// const SizedBox(
-// height: 10,
-// ),
-// TextFormField(
-// controller: titleController,
-// textAlign: TextAlign.start,
-// decoration: InputDecoration(
-// hintText: "Enter title of song",
-//
-// border: OutlineInputBorder(
-// borderRadius: BorderRadius.circular(5.0),
-// borderSide: const BorderSide(
-// color: Colors.black,
-// width: 5,
-// ),
-// ),
-// //fillColor: Colors.green
-// ),
-// ),
-// const SizedBox(
-// height: 10,
-// ),
-// SizedBox(
-// width: 100,
-// height: 20,
-// child: RaisedButton(
-// elevation: 0.0,
-// shape: RoundedRectangleBorder(
-// borderRadius: BorderRadius.circular(6),
-// ),
-// onPressed: () => router.to(Routes.lyricsUI),
-// child: const Text("Search"),
-// ),
-// )
-// ],
-// )

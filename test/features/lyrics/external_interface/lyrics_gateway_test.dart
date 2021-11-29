@@ -27,7 +27,7 @@ void main() {
 
       expect(
         useCase.entity,
-        LyricsEntity(artist: artist, title: title, lyrics: lyrics),
+        LyricsEntity( lyrics: lyrics),
       );
     });
   });

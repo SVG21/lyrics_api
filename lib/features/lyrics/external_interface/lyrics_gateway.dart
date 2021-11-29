@@ -35,8 +35,8 @@ class LyricsGateway extends RestGateway<LyricsGatewayOutput,
 
 class LyricsRequest extends GetRestRequest {
 
-  final String artist;
-  final String title;
+  late final String artist;
+  late final String title;
 
   LyricsRequest(this.artist, this.title);
 

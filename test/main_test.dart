@@ -26,8 +26,7 @@ void main() {
 
     expect(find.byType(app.ExampleApp), findsOneWidget);
 
-    final featuresMap =
-    providersContext().read(featureStatesProvider.featuresMap);
+    final featuresMap = providersContext().read(featureStatesProvider.featuresMap);
 
     expect(featuresMap.defaultState, isA<FeatureState>());
     expect(featuresMap.getStateFor(lyricsFeature), FeatureState.active);
